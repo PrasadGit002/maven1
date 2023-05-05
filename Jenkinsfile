@@ -19,8 +19,7 @@ node('built-in')
     }
     stage('ContinuousDelivery') 
     {
-        input message: 'Need approval', submitter: 'srinivas'
-        deploy adapters: [tomcat9(credentialsId: '10564694-bdfc-4504-8514-e30f8de2b82d', path: '', url: 'http://172.31.6.150:8080')], contextPath: 'prodapp', war: '**/*.war'
+     sh 'scp /home/ubuntu/.jenkins/workspace/scriptedpl1/webapp/target/webapp.war ubuntu@172.31.6.150:/var/lib/tomcat9/webapps/prod.war'  
     }
 
 }
