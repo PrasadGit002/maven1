@@ -10,8 +10,8 @@ node('built-in')
     }
      stage('ContinuousDeployment') 
     {
-        deploy adapters: [tomcat9(credentialsId: '23b397e2-dbd8-41f1-b9d7-b6eeb4f8374e', path: '', url: 'http://172.31.0.121:8080')], contextPath: 'testapp', war: '**/*.war'
-    }    
+        sh 'scp /home/ubuntu/.jenkins/workspace/scriptedpl1/webapp/target/webapp.war ubuntu@172.31.0.121:/var/lib/tomcat9/webapps/testapp.war'
+    }
      stage('ContinuousTesting') 
     {
         git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
